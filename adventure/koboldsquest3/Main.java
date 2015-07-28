@@ -14,7 +14,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 ***/
 
-package adventure;
+package koboldsquest3;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -26,36 +26,44 @@ import javax.imageio.ImageIO;
 
 public class Main extends Frame implements ActionListener
 {
-	BufferedImage img = null;
-
 	class MainCanvas extends Canvas
 	{
 
 		private Room room = new Room("bg-adventure-800x600-1.bmp");
+		private Player player = new Player();
 
 		public void paint(Graphics g) {
-			g.drawImage(room.getbg(), room.getx(), room.gety(), null);
-		
+			g.drawImage(room.getbgimg(), room.getx(), room.gety(), null);
+			g.drawImage(player.getimg(), player.getx(), player.gety(), null);
+				
 		}
 
-		public void Accept(Room r, int keycode) {
+		public void AcceptRoom(Room r, int keycode) {
 			r.visitCanvas(this, keycode);
+		}
+
+		public void AcceptPlayer(Player p, int keycode) {
+			p.visitCanvas(this, keycode);
 		}
 
 		public MainCanvas() { 
 			addKeyListener(new KeyAdapter () {
 			public void keyPressed (KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-					Accept(room, e.getKeyCode());
+					AcceptRoom(room, e.getKeyCode());
+					AcceptPlayer(player, e.getKeyCode());
 				} else
 				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-					Accept(room, e.getKeyCode());
+					AcceptRoom(room, e.getKeyCode());
+					AcceptPlayer(player, e.getKeyCode());
 				} else
 				if (e.getKeyCode() == KeyEvent.VK_UP) {
-					Accept(room, e.getKeyCode());
+					AcceptRoom(room, e.getKeyCode());
+					AcceptPlayer(player, e.getKeyCode());
 				} else
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-					Accept(room, e.getKeyCode());
+					AcceptRoom(room, e.getKeyCode());
+					AcceptPlayer(player, e.getKeyCode());
 				}
 				repaint();
 			}
@@ -63,6 +71,8 @@ public class Main extends Frame implements ActionListener
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 					System.exit(0);
 				}
+				player.setwalking(0);
+				repaint();
 			}
 		});	
 		}
@@ -71,10 +81,6 @@ public class Main extends Frame implements ActionListener
 
 	public Main() {
 			setTitle("Adventure");
-			try {
-				img = ImageIO.read(new File("./adventure/bg-adventure.bmp"));
-			} catch (IOException e) {
-			}
 			canvas = new MainCanvas();
 			add("Center", canvas);
 			
@@ -91,7 +97,7 @@ public class Main extends Frame implements ActionListener
 	{
 		Frame f = new Main();
 		f.setTitle("Adventure");
-		f.setSize(320, 200);
+		f.setSize(400, 320);
 		f.setVisible(true);
 		f.addWindowListener(new WindowAdapter () {
 			public void windowClosing(WindowEvent e) {

@@ -14,7 +14,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 ***/
 
-package adventure;
+package koboldsquest3;
 
 import java.awt.*;
 import java.awt.event.*;

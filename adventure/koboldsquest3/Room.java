@@ -14,7 +14,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 ***/
 
-package adventure;
+package koboldsquest3;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -28,12 +28,13 @@ public class Room
 {
 
 	private int x,y;
-	BufferedImage bg = null; 
+	BufferedImage bgimg = null;
+       	int walking;	
 
 	public void init(String filename)
 	{
 		try {
-				bg = ImageIO.read(new File("./adventure/" + filename));
+				bgimg = ImageIO.read(new File("./koboldsquest3/" + filename));
 			} catch (IOException e) {
 			}
 	}
@@ -46,16 +47,16 @@ public class Room
 	public void visitCanvas(Canvas canvas, int keycode) {
 		switch(keycode) {
 			case KeyEvent.VK_LEFT:
-				x -= 1;
-				break;
-			case KeyEvent.VK_RIGHT:
 				x += 1;
 				break;
+			case KeyEvent.VK_RIGHT:
+				x -= 1;
+				break;
 			case KeyEvent.VK_UP:
-				y -= 1;
+				y += 1;
 				break;
 			case KeyEvent.VK_DOWN:
-				y += 1;
+				y -= 1;
 				break;
 			default:
 				break;
@@ -70,8 +71,8 @@ public class Room
 		return y;
 	}
 
-	public BufferedImage getbg() {
-		return bg;
+	public BufferedImage getbgimg() {
+		return bgimg;
 	}
 
 }

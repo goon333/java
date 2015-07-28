@@ -24,41 +24,42 @@ import java.io.IOException;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class Room
+public class Player 
 {
 
 	private int x,y;
-	BufferedImage img = null;
+	BufferedImage standimg0 = null; 
+	BufferedImage walkimg0 = null; 
+	BufferedImage walkimg00 = null;
        	int walking;	
 
-	public void init(String filename)
+	public void init()
 	{
 		try {
-				img = ImageIO.read(new File("./koboldsquest3/" + filename));
+				standimg0 = ImageIO.read(new File("./koboldsquest3/" + "player-stand-1-50x50.bmp"));
+				walkimg0 = ImageIO.read(new File("./koboldsquest3/" + "player01-50x50.bmp"));
+				walkimg00 = ImageIO.read(new File("./koboldsquest3/" + "player02-50x50.bmp"));
 			} catch (IOException e) {
 			}
 	}
 
-	public Room(String filename)
+	public Player()
 	{
-		init(filename);	
+		x = 100;
+		y = 100;
+		init();	
 	}
 
 	public void visitCanvas(Canvas canvas, int keycode) {
 		switch(keycode) {
 			case KeyEvent.VK_LEFT:
-				x += 1;
-				break;
 			case KeyEvent.VK_RIGHT:
-				x -= 1;
-				break;
 			case KeyEvent.VK_UP:
-				y += 1;
-				break;
 			case KeyEvent.VK_DOWN:
-				y -= 1;
+				walking = 1;
 				break;
 			default:
+				walking = 0;
 				break;
 		}
 	}
@@ -71,8 +72,22 @@ public class Room
 		return y;
 	}
 
-	public BufferedImage getbgimg() {
-		return bgimg;
+	public BufferedImage getimg() {
+		if (walking == 0)
+			return standimg0;
+
+		walking += 1;
+
+		if (walking <= 2) 
+			return walkimg0;
+		else if (walking <= 3)
+			return standimg0;
+		else if (walking <= 4)
+			walking = 1;
+			return walkimg00;
 	}
 
+	public void setwalking(int x) {
+		walking = x;
+	}
 }

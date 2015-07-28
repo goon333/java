@@ -1,5 +1,7 @@
-To install and run:
+to compile :
 
-javac adventure/*.java
+javac koboldsquest3/*.java
 
-java adventure/Main
+to run :
+
+java koboldsquest3/Main
