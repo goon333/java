@@ -31,7 +31,7 @@ public class Main extends Frame implements ActionListener
 	class MainCanvas extends Canvas
 	{
 
-		private Room room = new Room("bg-adventure.bmp");
+		private Room room = new Room("bg-adventure-800-600-1.bmp");
 
 		public void paint(Graphics g) {
 			g.drawImage(room.getbg(), room.getx(), room.gety(), null);
@@ -41,23 +41,7 @@ public class Main extends Frame implements ActionListener
 		public void Accept(Room r, int keycode) {
 			r.visitCanvas(this, keycode);
 		}
-/***
-		public void AcceptLeft(Room r) {
-			r.visitCanvasLeft(this);
-		}
 
-		public void AcceptRight(Room r) {
-			r.visitCanvasRight(this);
-		}
-
-		public void AcceptUp(Room r) {
-			r.visitCanvasUp(this);
-		}
-
-		public void AcceptDown(Room r) {
-			r.visitCanvasDown(this);
-		}
-***/
 		public MainCanvas() { 
 			addKeyListener(new KeyAdapter () {
 			public void keyPressed (KeyEvent e) {

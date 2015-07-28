@@ -31,7 +31,7 @@ public class Main extends Frame implements ActionListener
 	class MainCanvas extends Canvas
 	{
 
-		private Room room = new Room("bg-adventure.bmp");
+		private Room room = new Room("bg-adventure-800x600-1.bmp");
 
 		public void paint(Graphics g) {
 			g.drawImage(room.getbg(), room.getx(), room.gety(), null);
