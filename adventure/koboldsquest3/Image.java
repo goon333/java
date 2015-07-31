@@ -24,35 +24,13 @@ import java.io.IOException;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class Entity 
+public class Image extends ImageBase implements VImage
 {
-
-	private int x,y;
-	private Image standimg0 = null; 
-       	private int talking;	
-
-	public void init(String filename, int xx, int yy)
-	{
-		standimg0 = new Image("./koboldsquest3/" + filename);
-		x = xx;
-		y = yy;
+	public Image(String filename) {
+		super(filename);
 	}
 
-	public Entity(String filename, int xx, int yy)
-	{
-		init(filename, xx, yy);	
+	public ImageManipulator createManipulator() {
+		return new ImageManipulator(this);
 	}
-
-	public int getx() {
-		return x;
-	}
-
-	public int gety() {
-		return y;
-	}
-
-	public BufferedImage getimg() {
-		return standimg0.createManipulator().getimg().getimg();
-	}
-
-}
+}	

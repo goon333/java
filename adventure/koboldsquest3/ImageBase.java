@@ -24,35 +24,19 @@ import java.io.IOException;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class Entity 
+public class ImageBase
 {
+	private BufferedImage img0 = null;
 
-	private int x,y;
-	private Image standimg0 = null; 
-       	private int talking;	
+	public ImageBase(String filename) {
+		try {
+			img0 = ImageIO.read(new File("./koboldsquest3/" + filename));
+			} catch (IOException e) {
+			}
+	}
 
-	public void init(String filename, int xx, int yy)
+	public BufferedImage getimg()
 	{
-		standimg0 = new Image("./koboldsquest3/" + filename);
-		x = xx;
-		y = yy;
+		return img0;
 	}
-
-	public Entity(String filename, int xx, int yy)
-	{
-		init(filename, xx, yy);	
-	}
-
-	public int getx() {
-		return x;
-	}
-
-	public int gety() {
-		return y;
-	}
-
-	public BufferedImage getimg() {
-		return standimg0.createManipulator().getimg().getimg();
-	}
-
-}
+}	
